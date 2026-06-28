@@ -1,3 +1,3 @@
 public func greeting() -> String {
-    "Hello from Swift!！！！！"
+    "Hello from Swift!"
 }

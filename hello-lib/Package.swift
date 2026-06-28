@@ -1,22 +1,31 @@
 // swift-tools-version: 6.3
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
+import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
     name: "HelloLib",
+    platforms: [.macOS(.v13)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "HelloLib",
+            type: .dynamic,
             targets: ["HelloLib"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/swiftlang/swift-java", exact: "0.4.2"),
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "HelloLib"
+            name: "HelloLib",
+            dependencies: [
+                .product(name: "SwiftJava", package: "swift-java"),
+            ],
+            plugins: [
+                .plugin(name: "JExtractSwiftPlugin", package: "swift-java"),
+            ]
         ),
         .testTarget(
             name: "HelloLibTests",

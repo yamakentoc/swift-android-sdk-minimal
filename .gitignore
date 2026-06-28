@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Xcode local user state
+xcuserdata/
+*.xcuserstate
+DerivedData/
+
+# Android Studio local project state
+android-app/.idea/
+*.iml
+
+# Build outputs
+.gradle/
+build/
+.build/
+.externalNativeBuild/
+.cxx/
+
+# Local machine configuration
+local.properties
+.swiftpm/configuration/registries.json
+.netrc

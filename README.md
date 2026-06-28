@@ -1,13 +1,13 @@
 # swift-android-sdk-minimal
 
-Minimal sample for calling Swift code from Android with Swift SDK for Android and `swift-java`.
+Minimal sample for sharing one Swift package with iOS and Android, then calling it from Android with Swift SDK for Android and `swift-java`.
 
 ## Structure
 
 ```text
-android-app/  Android app that calls the Swift library
-hello-lib/    Shared Swift package built into an Android AAR
-ios-app/      Placeholder iOS app project
+android-app/  Android app that calls the Swift library through generated Java wrappers
+hello-lib/    Single Swift package, single target, and Android Gradle library module
+ios-app/      iOS app that imports the same Swift package directly
 ```
 
 ## Swift API
@@ -20,7 +20,7 @@ public func greeting() -> String {
 }
 ```
 
-The Android app calls the generated Java wrapper:
+The iOS app imports `HelloLib` directly. The Android app calls the generated Java wrapper:
 
 ```kotlin
 import com.example.hellolib.HelloLib
@@ -39,15 +39,30 @@ If `swiftkit-core` is not available locally:
 
 ```bash
 cd hello-lib
-swift package resolve
+HELLOLIB_ENABLE_JEXTRACT=1 swift package resolve
 ./.build/checkouts/swift-java/gradlew --project-dir .build/checkouts/swift-java :SwiftKitCore:publishToMavenLocal
 ```
 
 ## Build
 
+Test the shared Swift package without Android bridge dependencies:
+
+```bash
+cd hello-lib
+swift test
+```
+
+Build the Android app. Gradle sets `HELLOLIB_ENABLE_JEXTRACT=1` when compiling Swift so the same `HelloLib` target gets Java wrappers:
+
 ```bash
 cd android-app
 ./gradlew :app:assembleDebug
+```
+
+Build the iOS app:
+
+```bash
+xcodebuild -project ios-app/HelloiOS/HelloiOS.xcodeproj -scheme HelloiOS -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
 ```
 
 The Swift library AAR is produced at:

@@ -1,12 +1,33 @@
 // swift-tools-version: 6.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import CompilerPluginSupport
+import Foundation
 import PackageDescription
+
+let enableJExtract = ProcessInfo.processInfo.environment["HELLOLIB_ENABLE_JEXTRACT"] == "1"
+
+var dependencies: [Package.Dependency] = []
+var helloLibDependencies: [Target.Dependency] = []
+var helloLibPlugins: [Target.PluginUsage] = []
+
+if enableJExtract {
+    dependencies.append(
+        .package(url: "https://github.com/swiftlang/swift-java", exact: "0.4.2")
+    )
+    helloLibDependencies.append(
+        .product(name: "SwiftJava", package: "swift-java")
+    )
+    helloLibPlugins.append(
+        .plugin(name: "JExtractSwiftPlugin", package: "swift-java")
+    )
+}
 
 let package = Package(
     name: "HelloLib",
-    platforms: [.macOS(.v13)],
+    platforms: [
+        .iOS(.v15),
+        .macOS(.v13),
+    ],
     products: [
         .library(
             name: "HelloLib",
@@ -14,18 +35,13 @@ let package = Package(
             targets: ["HelloLib"]
         ),
     ],
-    dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-java", exact: "0.4.2"),
-    ],
+    dependencies: dependencies,
     targets: [
         .target(
             name: "HelloLib",
-            dependencies: [
-                .product(name: "SwiftJava", package: "swift-java"),
-            ],
-            plugins: [
-                .plugin(name: "JExtractSwiftPlugin", package: "swift-java"),
-            ]
+            dependencies: helloLibDependencies,
+            exclude: ["swift-java.config"],
+            plugins: helloLibPlugins
         ),
         .testTarget(
             name: "HelloLibTests",

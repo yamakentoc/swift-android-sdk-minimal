@@ -120,6 +120,7 @@ abis.each { abi, info ->
 
         workingDir = layout.projectDirectory
         executable getSwiftlyPath()
+        environment 'HELLOLIB_ENABLE_JEXTRACT', '1'
         args 'run', 'swift', 'build', "+${swiftVersion}", '--swift-sdk', info.triple, '--build-system', 'native'
     }
 

@@ -27,4 +27,4 @@ dependencyResolutionManagement {
 rootProject.name = "HelloAndroid"
 include(":app")
 include(":hello-lib")
-project(":hello-lib").projectDir = file("../hello-lib/android")
+project(":hello-lib").projectDir = file("../hello-lib")

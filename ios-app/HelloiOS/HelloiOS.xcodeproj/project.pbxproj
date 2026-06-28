@@ -6,13 +6,8 @@
 	objectVersion = 90;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		000000000000000000000203 /* HelloLib in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000202 /* HelloLib */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* HelloiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		000000000000000000000201 /* HelloLib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HelloLib; path = ../../hello-lib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -27,7 +22,6 @@
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				000000000000000000000203 /* HelloLib in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -37,18 +31,9 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000010 /* HelloiOS */,
-				000000000000000000000200 /* Packages */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
-		};
-		000000000000000000000200 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				000000000000000000000201 /* HelloLib */,
-			);
-			name = Packages;
-			sourceTree = SOURCE_ROOT;
 		};
 		000000000000000000000020 /* Products */ = {
 			isa = PBXGroup;
@@ -75,9 +60,6 @@
 				000000000000000000000010 /* HelloiOS */,
 			);
 			name = HelloiOS;
-			packageProductDependencies = (
-				000000000000000000000202 /* HelloLib */,
-			);
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* HelloiOS.app */;
 			productType = "com.apple.product-type.application";
@@ -359,13 +341,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		000000000000000000000202 /* HelloLib */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HelloLib;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 000000000000000000000000 /* Project object */;
 }

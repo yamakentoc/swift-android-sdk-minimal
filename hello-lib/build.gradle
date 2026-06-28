@@ -98,7 +98,7 @@ def abis = [
 ]
 
 def generatedJniLibsDir = layout.buildDirectory.dir('generated/jniLibs')
-def generatedJavaDir = layout.projectDirectory.dir('.build/plugins/outputs/android/HelloLib/destination/JExtractSwiftPlugin/src/generated/java')
+def generatedJavaDir = layout.projectDirectory.dir('.build/plugins/outputs/hello-lib/HelloLib/destination/JExtractSwiftPlugin/src/generated/java')
 
 def buildSwiftAll = tasks.register('buildSwiftAll') {
     group = 'build'

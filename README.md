@@ -1,6 +1,10 @@
 # swift-android-sdk-minimal
 
-Swift SDK for Android を用いて、1つのSwift PackageをiOSとAndroidで共有してそれぞれで同一の処理を呼び出す最小構成のサンプルです。
+1つのSwift PackageをSwift SDK for Androidとswift-javaを用いてiOS / Androidで共有可能とした最小構成のサンプルです。
+
+- iOSでは同じ`HelloLib`をSwift Packageとして直接importして呼び出します。
+- Android向けにはSwift SDK for AndroidでAndroid target向けにビルドし、dynamic library productのため`.so`が成果物になります。
+- Kotlinからはswift-java / JExtractが生成するJava wrapper経由で`HelloLib`を呼び出します。
 
 ## 構成
 

@@ -1,6 +1,9 @@
 .DS_Store
 /.build
+/.build
 /build
+/android/.build
+/android/build
 /Packages
 xcuserdata/
 DerivedData/
